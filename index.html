@@ -1,7 +1,87 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h1>더포림 GitHub Pages 준비완료!</h1>
-    <p>가드니의 수목관리 시스템 시작합니다.</p>
-  </body>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>THE FORIM 수목조사 시스템</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- 구글 폰트 (선택) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo-mark">THE FORIM</div>
+    <div class="brand-text">
+      <h1>수목조사 &amp; QR 관리 시스템</h1>
+      <p>
+        공원별 수목조사 결과를 한눈에 보고, QR 코드로 현장에서 바로 확인할 수 있는
+        더포림 전용 플랫폼입니다.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-text">
+        <h2>공원을 선택해 시작하세요</h2>
+        <p>
+          현재는 샘플로 <strong>안흥유원지</strong> 한 곳부터 구축되어 있습니다.<br />
+          이후 다른 공원도 동일한 형식으로 확장할 수 있습니다.
+        </p>
+        <a href="/parks/안흥유원지/" class="btn-primary">
+          안흥유원지 수목조사표 보기
+        </a>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-badge">모던 + 자연친화</div>
+        <div class="hero-forest">
+          <span class="tree tree-1"></span>
+          <span class="tree tree-2"></span>
+          <span class="tree tree-3"></span>
+        </div>
+        <p class="hero-caption">
+          공원, 가로수, 마을정원을 위한<br />일관된 수목 관리 시스템
+        </p>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h3>공원별 수목조사</h3>
+        <p>
+          공원 단위로 수목조사표를 정리하고, 조사번호(예: ET0001)로
+          개별 나무 상세 페이지와 연결합니다.
+        </p>
+        <ul class="mini-list">
+          <li>공원별 index.html</li>
+          <li>수목별 상세 페이지 (/trees/ET0001.html)</li>
+          <li>QR 코드 이미지 (/qr/ET0001.png)</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3>QR 코드 현장 활용</h3>
+        <p>
+          조사번호마다 QR 코드를 생성해 현장 말뚝이나 안내판에 부착하면,
+          스캔만으로 상세 정보 페이지에 바로 접속할 수 있습니다.
+        </p>
+        <p class="hint">
+          * QR 이미지는 별도 생성 도구로 만든 후<br />
+          <code>/qr/ET0001.png</code> 와 같이 저장하면 됩니다.
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© THE FORIM · Landscape &amp; Tree Management</small>
+  </footer>
+</body>
 </html>
