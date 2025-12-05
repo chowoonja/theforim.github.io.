@@ -7,6 +7,52 @@
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
 <body>
+  <!-- ======= 조사 정보 입력 영역 ======= -->
+<div style="border:1px solid #ddd; padding:12px; margin-bottom:16px; background:#f9f9f9; border-radius:6px;">
+    <label><b>📍 공원명:</b></label>
+    <input type="text" id="parkName" placeholder="예) 안흥유원지" style="width:200px; margin:6px;"><br>
+
+    <label><b>👤 조사자명:</b></label>
+    <input type="text" id="investigator" placeholder="예) 가드너" style="width:200px; margin:6px;"><br>
+
+    <label><b>🗓 조사일자:</b></label>
+    <input type="date" id="surveyDate" style="margin:6px;"><br><br>
+
+    <button onclick="saveHeaderInfo()">💾 저장</button>
+    <button onclick="clearHeaderInfo()" style="margin-left:10px;">🗑 삭제</button>
+</div>
+
+<script>
+const file = location.pathname.split("/").pop().split(".")[0]; // DT0001 → DT코드 추출
+const KEY_PARK = `park-${file}`;
+const KEY_INV  = `inv-${file}`;
+const KEY_DATE = `date-${file}`;
+
+function saveHeaderInfo() {
+    localStorage.setItem(KEY_PARK, document.getElementById("parkName").value);
+    localStorage.setItem(KEY_INV,  document.getElementById("investigator").value);
+    localStorage.setItem(KEY_DATE, document.getElementById("surveyDate").value);
+    alert("저장 완료 ✔");
+}
+
+function loadHeaderInfo() {
+    document.getElementById("parkName").value     = localStorage.getItem(KEY_PARK) || "";
+    document.getElementById("investigator").value = localStorage.getItem(KEY_INV)  || "";
+    document.getElementById("surveyDate").value   = localStorage.getItem(KEY_DATE) || "";
+}
+
+function clearHeaderInfo() {
+    if(confirm("삭제할까요?")) {
+        localStorage.removeItem(KEY_PARK);
+        localStorage.removeItem(KEY_INV);
+        localStorage.removeItem(KEY_DATE);
+        loadHeaderInfo();
+    }
+}
+
+loadHeaderInfo(); // 페이지 열면 자동 로딩
+</script>
+<!-- ================================== -->
   <header class="site-header">
     <div class="logo-mark">THE FORIM</div>
     <div class="brand-text">
@@ -80,3 +126,4 @@
   </footer>
 </body>
 </html>
+
