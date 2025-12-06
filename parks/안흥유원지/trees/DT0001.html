@@ -6,87 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
-<script>
-  // ① 구글폼 기본 URL
-  const FORM_BASE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdgujOIV9bKAUyOAot7AoysT4UWBrrIKkQbIgWirDtZjaapQA/viewform';
-
-  // ② 각 질문에 해당하는 entry 코드
-  const ENTRY_PARK_NAME   = 'entry.1291403664';  // 공원명
-  const ENTRY_SURVEYOR    = 'entry.2066724387';  // 조사자명
-  const ENTRY_SURVEY_DATE = 'entry.2016295766';  // 조사일자
-  const ENTRY_TREE_CODE   = 'entry.1870322508';  // 관리번호(수목코드)
-
-  document.getElementById('openFormBtn').addEventListener('click', function () {
-    const parkName   = document.getElementById('parkName').value.trim();
-    const surveyor   = document.getElementById('surveyorName').value.trim();
-    const surveyDate = document.getElementById('surveyDate').value;  // YYYY-MM-DD
-    const treeCode   = document.getElementById('treeCode').value;
-
-    // 필수값 확인 (비어 있으면 안내)
-    if (!parkName || !surveyor || !surveyDate) {
-      alert('공원명, 조사자명, 조사일자를 먼저 입력해 주세요.');
-      return;
-    }
-
-    const params = new URLSearchParams();
-    params.set(ENTRY_PARK_NAME,   parkName);
-    params.set(ENTRY_SURVEYOR,    surveyor);
-    params.set(ENTRY_SURVEY_DATE, surveyDate);
-    params.set(ENTRY_TREE_CODE,   treeCode);
-
-    const finalUrl = FORM_BASE_URL + '?' + params.toString();
-
-    // 새 탭으로 구글폼 열기
-    window.open(finalUrl, '_blank');
-  });
-</script>
-  <body>
+<body>
   <!-- ======= 조사 정보 입력 영역 ======= -->
-<div style="border:1px solid #ddd; padding:12px; margin-bottom:16px; background:#f9f9f9; border-radius:6px;">
+  <div style="border:1px solid #ddd; padding:12px; margin-bottom:16px; background:#f9f9f9; border-radius:6px;">
     <label><b>📍 공원명:</b></label>
     <input type="text" id="parkName" placeholder="예) 안흥유원지" style="width:200px; margin:6px;"><br>
 
     <label><b>👤 조사자명:</b></label>
-    <input type="text" id="investigator" placeholder="예) 가드너" style="width:200px; margin:6px;"><br>
+    <!-- id를 surveyorName 으로 통일 -->
+    <input type="text" id="surveyorName" placeholder="예) 가드너" style="width:200px; margin:6px;"><br>
 
     <label><b>🗓 조사일자:</b></label>
     <input type="date" id="surveyDate" style="margin:6px;"><br><br>
 
+    <!-- 이 페이지의 수목 코드 (DT0001) -->
+    <input type="hidden" id="treeCode" value="DT0001">
+
     <button onclick="saveHeaderInfo()">💾 저장</button>
     <button onclick="clearHeaderInfo()" style="margin-left:10px;">🗑 삭제</button>
-</div>
+  </div>
 
-<script>
-const file = location.pathname.split("/").pop().split(".")[0]; // DT0001 → DT코드 추출
-const KEY_PARK = `park-${file}`;
-const KEY_INV  = `inv-${file}`;
-const KEY_DATE = `date-${file}`;
-
-function saveHeaderInfo() {
-    localStorage.setItem(KEY_PARK, document.getElementById("parkName").value);
-    localStorage.setItem(KEY_INV,  document.getElementById("investigator").value);
-    localStorage.setItem(KEY_DATE, document.getElementById("surveyDate").value);
-    alert("저장 완료 ✔");
-}
-
-function loadHeaderInfo() {
-    document.getElementById("parkName").value     = localStorage.getItem(KEY_PARK) || "";
-    document.getElementById("investigator").value = localStorage.getItem(KEY_INV)  || "";
-    document.getElementById("surveyDate").value   = localStorage.getItem(KEY_DATE) || "";
-}
-
-function clearHeaderInfo() {
-    if(confirm("삭제할까요?")) {
-        localStorage.removeItem(KEY_PARK);
-        localStorage.removeItem(KEY_INV);
-        localStorage.removeItem(KEY_DATE);
-        loadHeaderInfo();
-    }
-}
-
-loadHeaderInfo(); // 페이지 열면 자동 로딩
-</script>
-<!-- ================================== -->
   <header class="site-header">
     <div class="logo-mark">THE FORIM</div>
     <div class="brand-text">
@@ -114,27 +53,31 @@ loadHeaderInfo(); // 페이지 열면 자동 로딩
         <dt>수량(현장)</dt><dd></dd>
       </dl>
     </section>
-<section class="card" style="margin-top: 1.5rem;">
-  <h2 style="margin-top: 0;">현장 기록 입력</h2>
-  <p style="margin-bottom: 0.8rem;">
-    현장에서 생육 상태와 필요 관리 내용을 기록하려면 아래 버튼을 눌러주세요.
-  </p>
-  <a href="https://forms.gle/Ei7E7WxUnfwfnPHTA" 
-     target="_blank" 
-     rel="noopener"
-     style="
-       display: inline-block;
-       padding: 0.7rem 1.4rem;
-       border-radius: 6px;
-       background: #4caf50;
-       color: #fff;
-       text-decoration: none;
-       font-weight: 600;
-       font-size: 0.95rem;
-     ">
-    📋 수목 생육·관리 기록 입력
-  </a>
-</section>
+
+    <section class="card" style="margin-top: 1.5rem;">
+      <h2 style="margin-top: 0;">현장 기록 입력</h2>
+      <p style="margin-bottom: 0.8rem;">
+        현장에서 생육 상태와 필요 관리 내용을 기록하려면 아래 버튼을 눌러주세요.
+      </p>
+      <!-- 기존 고정 링크 대신, JS로 폼 URL을 생성하도록 버튼에 id 부여 -->
+      <a
+        href="#"
+        id="openFormBtn"
+        style="
+          display: inline-block;
+          padding: 0.7rem 1.4rem;
+          border-radius: 6px;
+          background: #4caf50;
+          color: #fff;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+        "
+      >
+        📋 수목 생육·관리 기록 입력
+      </a>
+    </section>
+
     <section class="card" style="margin-top: 1.5rem;">
       <h2 style="margin-top: 0;">생육 및 관리 상태</h2>
       <dl style="display: grid; grid-template-columns: 120px 1fr; row-gap: 0.35rem; margin: 0;">
@@ -178,8 +121,78 @@ loadHeaderInfo(); // 페이지 열면 자동 로딩
   <footer class="site-footer">
     <small>© THE FORIM · Tree ID: DT0001</small>
   </footer>
+
+  <!-- ===== 조사 정보 localStorage 저장/불러오기 스크립트 ===== -->
+  <script>
+    const file = location.pathname.split("/").pop().split(".")[0]; // DT0001 → DT코드 추출
+    const KEY_PARK = `park-${file}`;
+    const KEY_INV  = `inv-${file}`;
+    const KEY_DATE = `date-${file}`;
+
+    function saveHeaderInfo() {
+      localStorage.setItem(KEY_PARK, document.getElementById("parkName").value);
+      localStorage.setItem(KEY_INV,  document.getElementById("surveyorName").value);
+      localStorage.setItem(KEY_DATE, document.getElementById("surveyDate").value);
+      alert("저장 완료 ✔");
+    }
+
+    function loadHeaderInfo() {
+      document.getElementById("parkName").value     = localStorage.getItem(KEY_PARK) || "";
+      document.getElementById("surveyorName").value = localStorage.getItem(KEY_INV)  || "";
+      document.getElementById("surveyDate").value   = localStorage.getItem(KEY_DATE) || "";
+    }
+
+    function clearHeaderInfo() {
+      if (confirm("삭제할까요?")) {
+        localStorage.removeItem(KEY_PARK);
+        localStorage.removeItem(KEY_INV);
+        localStorage.removeItem(KEY_DATE);
+        loadHeaderInfo();
+      }
+    }
+  </script>
+
+  <!-- ===== 구글폼 자동 채우기 & 열기 스크립트 ===== -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      // 페이지 열릴 때 localStorage 값 불러오기
+      loadHeaderInfo();
+
+      // ① 구글폼 기본 URL
+      const FORM_BASE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdgujOIV9bKAUyOAot7AoysT4UWBrrIKkQbIgWirDtZjaapQA/viewform';
+
+      // ② 각 질문에 해당하는 entry 코드
+      const ENTRY_PARK_NAME   = 'entry.1291403664';  // 공원명
+      const ENTRY_SURVEYOR    = 'entry.2066724387';  // 조사자명
+      const ENTRY_SURVEY_DATE = 'entry.2016295766';  // 조사일자
+      const ENTRY_TREE_CODE   = 'entry.1870322508';  // 관리번호(수목코드)
+
+      const btn = document.getElementById('openFormBtn');
+      if (!btn) return;
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault(); // 기존 링크 이동 막기
+
+        const parkName   = document.getElementById('parkName').value.trim();
+        const surveyor   = document.getElementById('surveyorName').value.trim();
+        const surveyDate = document.getElementById('surveyDate').value;  // YYYY-MM-DD
+        const treeCode   = document.getElementById('treeCode').value;
+
+        if (!parkName || !surveyor || !surveyDate) {
+          alert('공원명, 조사자명, 조사일자를 먼저 입력해 주세요.');
+          return;
+        }
+
+        const params = new URLSearchParams();
+        params.set(ENTRY_PARK_NAME,   parkName);
+        params.set(ENTRY_SURVEYOR,    surveyor);
+        params.set(ENTRY_SURVEY_DATE, surveyDate);
+        params.set(ENTRY_TREE_CODE,   treeCode);
+
+        const finalUrl = FORM_BASE_URL + '?' + params.toString();
+        window.open(finalUrl, '_blank');
+      });
+    });
+  </script>
 </body>
 </html>
-
-
-
