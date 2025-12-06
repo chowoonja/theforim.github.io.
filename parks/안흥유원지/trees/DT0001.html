@@ -6,7 +6,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="/assets/style.css" />
 </head>
-<body>
+<script>
+  // ① 구글폼 기본 URL
+  const FORM_BASE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdgujOIV9bKAUyOAot7AoysT4UWBrrIKkQbIgWirDtZjaapQA/viewform';
+
+  // ② 각 질문에 해당하는 entry 코드
+  const ENTRY_PARK_NAME   = 'entry.1291403664';  // 공원명
+  const ENTRY_SURVEYOR    = 'entry.2066724387';  // 조사자명
+  const ENTRY_SURVEY_DATE = 'entry.2016295766';  // 조사일자
+  const ENTRY_TREE_CODE   = 'entry.1870322508';  // 관리번호(수목코드)
+
+  document.getElementById('openFormBtn').addEventListener('click', function () {
+    const parkName   = document.getElementById('parkName').value.trim();
+    const surveyor   = document.getElementById('surveyorName').value.trim();
+    const surveyDate = document.getElementById('surveyDate').value;  // YYYY-MM-DD
+    const treeCode   = document.getElementById('treeCode').value;
+
+    // 필수값 확인 (비어 있으면 안내)
+    if (!parkName || !surveyor || !surveyDate) {
+      alert('공원명, 조사자명, 조사일자를 먼저 입력해 주세요.');
+      return;
+    }
+
+    const params = new URLSearchParams();
+    params.set(ENTRY_PARK_NAME,   parkName);
+    params.set(ENTRY_SURVEYOR,    surveyor);
+    params.set(ENTRY_SURVEY_DATE, surveyDate);
+    params.set(ENTRY_TREE_CODE,   treeCode);
+
+    const finalUrl = FORM_BASE_URL + '?' + params.toString();
+
+    // 새 탭으로 구글폼 열기
+    window.open(finalUrl, '_blank');
+  });
+</script>
+  <body>
   <!-- ======= 조사 정보 입력 영역 ======= -->
 <div style="border:1px solid #ddd; padding:12px; margin-bottom:16px; background:#f9f9f9; border-radius:6px;">
     <label><b>📍 공원명:</b></label>
@@ -146,5 +180,6 @@ loadHeaderInfo(); // 페이지 열면 자동 로딩
   </footer>
 </body>
 </html>
+
 
 
