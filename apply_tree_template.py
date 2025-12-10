@@ -2,10 +2,10 @@ import os
 from bs4 import BeautifulSoup
 
 # 템플릿 파일 위치 (DT0001 모양의 기본 틀)
-TEMPLATE_PATH = os.path.join("parks", "안흥유원지", "tree_template.html")
+TEMPLATE_PATH = "parks/안흥유원지/tree_template.html"
 
 # 실제 나무 HTML 파일들이 들어 있는 폴더
-TARGET_DIR = os.path.join("parks", "안흥유원지", "trees")
+TARGET_DIR =  "parks/안흥유원지/trees"
 
 # 대상 파일 목록 (DT****.html, ET****.html 모두)
 tree_files = [
