@@ -227,3 +227,21 @@ a {
     grid-template-columns: 1fr;
   }
 }
+/* QR 클릭 안 되는 문제 해결 */
+.card img {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.card a {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.tree-section,
+#record-section {
+  position: relative;
+  z-index: 1;
+}

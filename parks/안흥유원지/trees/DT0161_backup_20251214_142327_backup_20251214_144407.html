@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<title>DT0161_backup_20251214_142327_backup_20251214_144407 · 안흥유원지 · THE FORIM</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="/assets/style.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- ======= 조사 정보 입력 영역 ======= -->
+<div style="border:1px solid #ddd; padding:12px; margin-bottom:16px; background:#f9f9f9; border-radius:6px;">
+<label><b>📍 공원명:</b></label>
+<input id="parkName" placeholder="예) 안흥유원지" style="width:200px; margin:6px;" type="text"/><br/>
+<label><b>👤 조사자명:</b></label>
+<!-- id를 surveyorName 으로 통일 -->
+<input id="surveyorName" placeholder="예) 가드너" style="width:200px; margin:6px;" type="text"/><br/>
+<label><b>🗓 조사일자:</b></label>
+<input id="surveyDate" style="margin:6px;" type="date"/><br/><br/>
+<!-- 이 페이지의 수목 코드 (DT0001) -->
+<input id="treeCode" type="hidden" value="DT0161"/>
+<button onclick="saveHeaderInfo()">💾 저장</button>
+<button onclick="clearHeaderInfo()" style="margin-left:10px;">🗑 삭제</button>
+</div>
+<header class="site-header">
+<div class="logo-mark">THE FORIM</div>
+<div class="brand-text">
+<h1>수목 상세 정보</h1>
+<p>조사번호: DT0161_backup_20251214_142327_backup_20251214_144407 · 안흥유원지</p>
+</div>
+</header>
+<main class="container">
+<nav style="margin: 1rem 0 1.5rem; font-size: 0.9rem;">
+<a href="/">메인</a> · <a href="/parks/안흥유원지/">안흥유원지 수목조사표</a>
+</nav>
+<section class="card">
+<h2 style="margin-top: 0;">기본 정보</h2>
+
+<dl style="display: grid; grid-template-columns: 120px 1fr; row-gap: 0.35rem; margin: 0;">
+<dt>조사번호</dt><dd>DT0161</dd>
+<dt>관리번호</dt><dd>안흥낙교벚-21</dd>
+<dt>성상</dt><dd>상록교목</dd>
+<dt>수종명</dt><dd>벚나무</dd>
+<dt>규격</dt><dd>H4.0xB15</dd>
+<dt>단위</dt><dd></dd>
+<dt>수량(설계)</dt><dd></dd>
+<dt>수량(현장)</dt><dd></dd>
+</dl>
+</section>
+<section class="card" style="margin-top: 1.5rem;">
+<h2 style="margin-top: 0;">현장 기록 입력</h2>
+<p style="margin-bottom: 0.8rem;">
+        현장에서 생육 상태와 필요 관리 내용을 기록하려면 아래 버튼을 눌러주세요.
+      </p>
+<!-- 기존 고정 링크 대신, JS로 폼 URL을 생성하도록 버튼에 id 부여 -->
+<a href="#" id="openFormBtn" style="
+          display: inline-block;
+          padding: 0.7rem 1.4rem;
+          border-radius: 6px;
+          background: #4caf50;
+          color: #fff;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 0.95rem;
+        ">
+        📋 수목 생육·관리 기록 입력
+      </a>
+</section>
+<section class="card" style="margin-top: 1.5rem;">
+<h2 style="margin-top: 0;">생육 및 관리 상태</h2>
+<dl style="display: grid; grid-template-columns: 120px 1fr; row-gap: 0.35rem; margin: 0;">
+<dt>활력도</dt><dd></dd>
+<dt>수형</dt><dd></dd>
+<dt>고사지 유무</dt><dd></dd>
+<dt>기울기</dt><dd></dd>
+<dt>병해충 유무</dt><dd></dd>
+<dt>지주 상태</dt><dd></dd>
+<dt>토양 상태</dt><dd></dd>
+<dt>필요 관리 내용</dt><dd></dd>
+</dl>
+</section>
+<section class="tree-section" id="record-section">
+<h2>수목 생육 관리 기록 입력</h2>
+<p class="section-desc">
+    현장에서 관리자가 수목 관리 내용을 기록하는 공간입니다. 필요 시 출력해서 수기로 작성해도 좋습니다.
+  </p>
+<table class="info-table record-table">
+<tbody>
+<tr>
+<th>기록 일자</th>
+<td> </td>
+</tr>
+<tr>
+<th>작업 내용</th>
+<td style="height: 80px;"> </td>
+</tr>
+<tr>
+<th>담당자</th>
+<td> </td>
+</tr>
+<tr>
+<th>비고</th>
+<td style="height: 60px;"> </td>
+</tr>
+ㅗ싀</tbody></table></section></main>
+</body>
+</html>
