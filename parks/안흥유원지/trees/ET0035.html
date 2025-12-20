@@ -1,98 +1,65 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8"/>
-<title>ET0035 · 안흥유원지 · THE FORIM</title>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<link href="/assets/style.css" rel="stylesheet"/>
+  <meta charset="utf-8" />
+  <title>ET0035 쨌 ?덊씎?좎썝吏 쨌 THE FORIM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/style.css" />
 </head>
 <body>
-<header class="site-header">
-<div class="logo-mark">THE FORIM</div>
-<div class="brand-text">
-<h1>수목 상세 정보</h1>
-<p>조사번호: ET0035 · 안흥유원지</p>
-</div>
-</header>
-<main class="container">
-<nav style="margin: 1rem 0 1.5rem; font-size: 0.9rem;">
-<a href="/">메인</a> · <a href="/parks/안흥유원지/">안흥유원지 수목조사표</a>
-</nav>
-<section class="card">
-<h2 style="margin-top: 0;">기본 정보</h2>
-<dl style="display: grid; grid-template-columns: 120px 1fr; row-gap: 0.35rem; margin: 0;">
-<dt>조사번호</dt><dd>ET0035</dd>
-<dt>관리번호</dt><dd>안흥상교소-35</dd>
-<dt>성상</dt><dd>상록교목</dd>
-<dt>수종명</dt><dd>소나무</dd>
-<dt>규격</dt><dd>H10.0*B25</dd>
-<dt>단위</dt><dd>주</dd>
-<dt>수량(설계)</dt><dd>1.0</dd>
-<dt>수량(현장)</dt><dd></dd>
-</dl>
-</section>
-<section class="card" style="margin-top: 1.5rem;">
-<h2 style="margin-top: 0;">생육 및 관리 상태</h2>
-<dl style="display: grid; grid-template-columns: 120px 1fr; row-gap: 0.35rem; margin: 0;">
-<dt>활력도</dt><dd></dd>
-<dt>수형</dt><dd></dd>
-<dt>고사지 유무</dt><dd></dd>
-<dt>기울기</dt><dd></dd>
-<dt>병해충 유무</dt><dd></dd>
-<dt>지주 상태</dt><dd></dd>
-<dt>토양 상태</dt><dd></dd>
-<dt>필요 관리 내용</dt><dd></dd>
-</dl>
-</section>
 
-<section class="tree-section" id="record-section">
-<h2>수목 생육 관리 기록 입력</h2>
-<p class="section-desc">
-    현장에서 관리자가 수목 관리 내용을 기록하는 공간입니다. 필요 시 출력해서 수기로 작성해도 좋습니다.
-  </p>
-<table class="info-table record-table">
-<tbody>
-<tr>
-<th>기록 일자</th>
-<td> </td>
-</tr>
-<tr>
-<th>작업 내용</th>
-<td style="height: 80px;"> </td>
-</tr>
-<tr>
-<th>담당자</th>
-<td> </td>
-</tr>
-<tr>
-<th>비고</th>
-<td style="height: 60px;"> </td>
-</tr>
-</tbody>
-</table>
-</section>
-<section class="card" style="margin-top: 1.5rem;">
-<h2 style="margin-top: 0;">QR 코드</h2>
-<p style="font-size: 0.9rem; color: #555;">
-        아래 QR 코드는 이 페이지로 연결됩니다. 현장 표찰에 인쇄하여 부착하세요.
-      </p>
-<img alt="ET0035 QR 코드" src="/qr/ET0035.png" style="width: 150px; height: 150px; object-fit: contain; background:#fff; border-radius:0.6rem; border:1px solid #dde3dd;"/>
-<p style="font-size:0.85rem; color:#666;">
-        파일 위치: <code>/qr/ET0035.png</code><br/>
-        페이지 URL: <code>https://theforim.com/trees/ET0035.html</code>
-</p>
-</section>
-<section class="card" style="margin-top:1.5rem;">
-<h2 style="margin-top:0;">사진 및 기록</h2>
-<p style="font-size:0.9rem; color:#555;">
-        시공 전·중·후 사진은 공용 폴더에 저장하고,
-        파일명에 <strong>ET0035</strong>를 포함해 주세요.<br/>
-        예: ET0035_before.jpg, ET0035_after.jpg
-      </p>
-</section>
-</main>
-<footer class="site-footer">
-<small>© THE FORIM · Tree ID: ET0035</small>
-</footer>
+  <div style="border:1px solid #ddd; padding:12px; margin-bottom:16px; background:#f9f9f9; border-radius:6px;">
+    <label><b>?뱧 怨듭썝紐?</b></label>
+    <input id="parkName" placeholder="?덊씎?좎썝吏" style="width:200px; margin:6px;" type="text"/><br/>
+    <label><b>?뫀 議곗궗?먮챸:</b></label>
+    <input id="surveyorName" placeholder="?? 媛?쒕꼫" style="width:200px; margin:6px;" type="text"/><br/>
+    <label><b>?뿎 議곗궗?쇱옄:</b></label>
+    <input id="surveyDate" style="margin:6px;" type="date"/><br/><br/>
+    <input id="treeCode" type="hidden" value="ET0035"/>
+  </div>
+
+  <header class="site-header">
+    <div class="logo-mark">THE FORIM</div>
+    <div class="brand-text">
+      <h1>?섎ぉ ?곸꽭 ?뺣낫</h1>
+      <p>議곗궗踰덊샇: ET0035 쨌 ?덊씎?좎썝吏</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>湲곕낯 ?뺣낫</h2>
+      <dl>
+        <dt>議곗궗踰덊샇</dt><dd>ET0035</dd>
+        <dt>愿由щ쾲??/dt><dd>?덊씎?곴탳??35</dd>
+        <dt>?깆긽</dt><dd>?곷줉援먮ぉ</dd>
+        <dt>?섏쥌紐?/dt><dd>?뚮굹臾?/dd>
+        <dt>洹쒓꺽</dt><dd>H10.0*B25</dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <a
+  id="openFormBtn"
+  href="https://docs.google.com/forms/d/e/1FAIpQLSdgujOIV9bKAUyOAot7AoysT4UWBrrIKkQbIgWirDtZjaapQA/viewform?usp=pp_url&entry.XXXX=DT0001"
+  target="_blank"
+  style="
+    display: inline-block;
+    padding: 0.7rem 1.4rem;
+    border-radius: 6px;
+    background: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+  "
+>📋 수목 생육·관리 기록 입력</a>
+    </section>
+  </main>
+
 </body>
 </html>
+
+
+
+
