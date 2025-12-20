@@ -1,0 +1,10 @@
+# local backups / work files
+*_backup*.html
+*_broken*.html
+*_broken_*.html
+*_backup/
+_backup/
+*.xlsx
+make_tree_pages.py
+DT0001_backup.html
+lindex_broken_20251219.html
