@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>DT0062 · 안흥유원지 · THE FORIM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/style.css" />
+</head>
+<body>
+
+  <div style="border:1px solid #ddd; padding:12px; margin-bottom:16px; background:#f9f9f9; border-radius:6px;">
+    <label><b>📍 공원명:</b></label>
+    <input id="parkName" placeholder="안흥유원지" style="width:200px; margin:6px;" type="text"/><br/>
+    <label><b>👤 조사자명:</b></label>
+    <input id="surveyorName" placeholder="예) 가드너" style="width:200px; margin:6px;" type="text"/><br/>
+    <label><b>🗓 조사일자:</b></label>
+    <input id="surveyDate" style="margin:6px;" type="date"/><br/><br/>
+    <input id="treeCode" type="hidden" value="DT0062"/>
+  </div>
+
+  <header class="site-header">
+    <div class="logo-mark">THE FORIM</div>
+    <div class="brand-text">
+      <h1>수목 상세 정보</h1>
+      <p>조사번호: DT0062 · 안흥유원지</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>기본 정보</h2>
+      <dl>
+        <dt>조사번호</dt><dd>DT0062</dd>
+        <dt>관리번호</dt><dd>안흥낙교단-29</dd>
+        <dt>성상</dt><dd>낙엽교목</dd>
+        <dt>수종명</dt><dd>단풍나무</dd>
+        <dt>규격</dt><dd>H4.0*B15</dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <a id="openFormBtn"
+         href="https://docs.google.com/forms/d/e/1FAIpQLSdgujOIV9bKAUyOAot7AoysT4UWBrrIKkQbIgWirDtZjaapQA/viewform"
+         target="_blank"
+         style="display:inline-block;padding:0.7rem 1.4rem;border-radius:6px;background:#4caf50;color:#fff;text-decoration:none;">
+        조사 기록
+      </a>
+    </section>
+  </main>
+
+</body>
+</html>
