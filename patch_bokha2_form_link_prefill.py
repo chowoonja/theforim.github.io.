@@ -6,17 +6,18 @@ TREE_DIR = "trees"
 
 FORM_BASE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgujOIV9bKAUyOAot7AoysT4UWBrrIKkQbIgWirDtZjaapQA/viewform"
 
-ENTRY_PARK = "entry.939121262"   # 공원명
-ENTRY_TREE = "entry.253024248"   # 수목코드
+# ✅ 네가 준 “자동입력 되는” entry 번호로 확정
+ENTRY_PARK = "entry.1291403664"   # 공원명
+ENTRY_TREE = "entry.1870322508"   # 수목코드
 
 PARK_NAME = "복하천 제2수변공원"
 
 def make_prefill_url(tree_code: str) -> str:
     params = {
-        "usp": "pp_url",
         ENTRY_PARK: PARK_NAME,
         ENTRY_TREE: tree_code,
     }
+    # usp=pp_url 없어도 네 링크처럼 entry만으로 자동입력 됨
     return FORM_BASE_URL + "?" + urllib.parse.urlencode(params)
 
 patched = 0
@@ -34,14 +35,14 @@ for fn in os.listdir(TREE_DIR):
     target = make_prefill_url(tree_code)
     changed = False
 
-    # 1) <a> 버튼 케이스
+    # '조사 기록' 버튼(<a>) 링크 교체
     for a in soup.find_all("a"):
         if a.get_text(" ", strip=True) == "조사 기록":
             a["href"] = target
             a["target"] = "_blank"
             changed = True
 
-    # 2) <button onclick> 케이스(혹시 있을 때)
+    # 혹시 <button onclick>이면 이것도 교체
     for b in soup.find_all("button"):
         if b.get_text(" ", strip=True) == "조사 기록":
             b["onclick"] = f"window.open('{target}','_blank')"
@@ -52,4 +53,4 @@ for fn in os.listdir(TREE_DIR):
             f.write(str(soup))
         patched += 1
 
-print(f"✅ 조사기록 버튼 미리채움 링크 적용: {patched}개")
+print(f"✅ 조사 기록 버튼 자동입력 링크 적용: {patched}개")
