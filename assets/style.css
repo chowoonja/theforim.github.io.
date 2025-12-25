@@ -245,3 +245,51 @@ a {
   position: relative;
   z-index: 1;
 }
+/* === SAFE PATCH: basic-info alignment + green button styling === */
+
+/* 기본정보 제목/내용 한 줄 정렬 */
+.card dl {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  column-gap: 12px;
+  row-gap: 8px;
+  margin: 0;
+}
+
+.card dt {
+  font-weight: 700;
+  color: #222;
+  margin: 0;
+}
+
+.card dd {
+  margin: 0;
+  color: #222;
+  text-align: left;
+}
+
+/* 모바일 대응 */
+@media (max-width: 480px) {
+  .card dl {
+    grid-template-columns: 110px 1fr;
+  }
+}
+
+/* 조사 기록 초록 버튼 (현장기록입력 스타일) */
+a#openFormBtn {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  margin-top: 12px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-align: center;
+  line-height: 1.2;
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+a#openFormBtn:active {
+  transform: translateY(1px);
+}
