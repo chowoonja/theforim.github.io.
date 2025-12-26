@@ -1,1 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>DT0001 · 안흥유원지 · THE FORIM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/assets/style.css" />
+<script>
+(function () {
+  const treeCode = location.pathname.split("/").pop().replace(".html", "");
 
+  function getParkNameFromPath() {
+    const parts = location.pathname.split("/").filter(Boolean);
+    const i = parts.indexOf("parks");
+    if (i >= 0 && parts[i + 1]) return decodeURIComponent(parts[i + 1]);
+    return "";
+  }
+  const parkName = getParkNameFromPath();
+
+  // ✅ 1) 팝업 유발 초안 키를 "가장 먼저" 제거
+  try {
+    localStorage.removeItem("draft_" + treeCode);
+    localStorage.removeItem("draft_" + parkName + "_" + treeCode);
+
+    // 혹시 키 이름이 달라도 잡히게: DT코드/공원명이 포함된 키는 제거
+    Object.keys(localStorage).forEach(k => {
+      if (k.includes(treeCode) || (parkName && k.includes(parkName))) {
+        localStorage.removeItem(k);
+      }
+    });
+  } catch (e) {}
+
+  // ✅ 2) 자동채움/링크갱신은 DOM 로드 후 실행
+  function fill() {
+    const parkEl = document.querySelector("#parkName");
+    const codeEl = document.querySelector("#treeCode");
+    if (parkEl && parkName) parkEl.value = parkName;
+    if (codeEl && treeCode) codeEl.value = treeCode;
+
+    const btn = document.querySelector("#openFormBtn");
+    if (btn) {
+      const base = btn.href.split("?")[0];
+      const p1 = "entry.939121262=" + encodeURIComponent(parkName || "");
+      const p2 = "entry.253024248=" + encodeURIComponent(treeCode || "");
+      btn.href = base + "?usp=pp_url&" + p1 + "&" + p2;
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", fill);
+  } else {
+    fill();
+  }
+})();
+</script>
+</head>
+<body>
+
+  <div style="border:1px solid #ddd; padding:12px; margin-bottom:16px; background:#f9f9f9; border-radius:6px;">
+    <label><b>📍 공원명:</b></label>
+    <input id="parkName" placeholder="안흥유원지" style="width:200px; margin:6px;" type="text"/><br/>
+    <label><b>👤 조사자명:</b></label>
+    <input id="surveyorName" placeholder="예) 가드너" style="width:200px; margin:6px;" type="text"/><br/>
+    <label><b>🗓 조사일자:</b></label>
+    <input id="surveyDate" style="margin:6px;" type="date"/><br/><br/>
+    <input id="treeCode" type="hidden" value=""/>
+  </div>
+
+  <header class="site-header">
+    <div class="logo-mark">THE FORIM</div>
+    <div class="brand-text">
+      <h1>수목 상세 정보</h1>
+      <p>조사번호: DT0001 · 안흥유원지</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>기본 정보</h2>
+      <dl>
+        <dt>조사번호</dt><dd>DT0001</dd>
+        <dt>관리번호</dt><dd>안흥낙교가-1</dd>
+        <dt>성상</dt><dd>낙엽교목</dd>
+        <dt>수종명</dt><dd>가죽나무</dd>
+        <dt>규격</dt><dd>H10.0*B25</dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <a id="openFormBtn"
+         href="https://docs.google.com/forms/d/e/1FAIpQLSdgujOIV9bKAUyOAot7AoysT4UWBrrIKkQbIgWirDtZjaapQA/viewform?usp=pp_url&entry.939121262=%EC%95%88%ED%9D%A5%EC%9C%A0%EC%9B%90%EC%A7%80&entry.253024248=DT0001"
+         target="_blank"
+         style="display:inline-block;padding:0.7rem 1.4rem;border-radius:6px;background:#4caf50;color:#fff;text-decoration:none;">
+        조사 기록
+      </a> · </section>
+  </main>
+
+</body>
+</html>
