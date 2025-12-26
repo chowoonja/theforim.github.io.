@@ -11,7 +11,7 @@
 <!-- ======= 조사 정보 입력 영역 ======= -->
 <div style="border:1px solid #ddd; padding:12px; margin-bottom:16px; background:#f9f9f9; border-radius:6px;">
 <label><b>📍 공원명:</b></label>
-<input id="parkName" placeholder="예) 안흥유원지" style="width:200px; margin:6px;" type="text"/><br/>
+<input id="parkName" placeholder="예) 안흥유원지" style="width:200px; margin:6px;" type="text"/ value="복하천 제2수변공원"><br/>
 <label><b>👤 조사자명:</b></label>
 <!-- id를 surveyorName 으로 통일 -->
 <input id="surveyorName" placeholder="예) 가드너" style="width:200px; margin:6px;" type="text"/><br/>
@@ -126,6 +126,7 @@
         localStorage.removeItem(KEY_INV);
         localStorage.removeItem(KEY_DATE);
         loadHeaderInfo();
+      if (!document.getElementById("parkName").value) { document.getElementById("parkName").value = "복하천 제2수변공원"; }
       }
     }
   </script>
@@ -134,6 +135,7 @@
     window.addEventListener('DOMContentLoaded', function () {
       // 페이지 열릴 때 localStorage 값 불러오기
       loadHeaderInfo();
+      if (!document.getElementById("parkName").value) { document.getElementById("parkName").value = "복하천 제2수변공원"; }
 
       // ① 구글폼 기본 URL
       const FORM_BASE_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdgujOIV9bKAUyOAot7AoysT4UWBrrIKkQbIgWirDtZjaapQA/viewform';
