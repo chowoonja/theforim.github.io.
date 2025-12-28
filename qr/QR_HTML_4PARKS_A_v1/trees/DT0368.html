@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DT0368 · 은행나무 · 안흥유원지 · THE FORIM</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; margin:0; background:#f6f7f9; color:#111;}
+    .site-header{background:#111; color:#fff; padding:18px 16px;}
+    .logo-mark{font-weight:800; letter-spacing:0.08em; font-size:12px; opacity:0.85;}
+    .brand-text h1{margin:6px 0 2px; font-size:18px;}
+    .brand-text p{margin:0; opacity:0.8; font-size:13px;}
+    .container{max-width:820px; margin:0 auto; padding:16px;}
+    .card{background:#fff; border-radius:14px; padding:16px; box-shadow:0 6px 18px rgba(0,0,0,.06);}
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+    .row{display:flex; gap:10px;}
+    .k{min-width:110px; font-weight:700; color:#333;}
+    .v{flex:1; color:#111; word-break:break-word;}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 14px; border-radius:12px; border:0; background:#1a73e8; color:#fff; font-weight:800; cursor:pointer; text-decoration:none;}
+    .btn.secondary{background:#111;}
+    .muted{color:#666; font-size:12px;}
+    @media (max-width:640px){.grid{grid-template-columns:1fr;} .k{min-width:92px;}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo-mark">THE FORIM</div>
+    <div class="brand-text">
+      <h1>수목 상세 정보</h1>
+      <p>조사번호: DT0368 · 안흥유원지</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="grid">
+        <div class="row"><div class="k">공원명</div><div class="v">안흥유원지</div></div>
+        <div class="row"><div class="k">수목코드</div><div class="v">DT0368</div></div>
+        <div class="row"><div class="k">수종명</div><div class="v">은행나무</div></div>
+        <div class="row"><div class="k">성상</div><div class="v">낙엽교목</div></div>
+        <div class="row"><div class="k">규격</div><div class="v">H8.0xB30</div></div>
+        <div class="row"><div class="k">단위</div><div class="v"></div></div>
+        <div class="row"><div class="k">수량(설계)</div><div class="v">2.0</div></div>
+        <div class="row"><div class="k">수량(현장)</div><div class="v"></div></div>
+        <div class="row"><div class="k">관리번호</div><div class="v">안흥낙교은-15</div></div>
+        <div class="row"><div class="k">사진ID</div><div class="v">안흥낙교은-15</div></div>
+      </div>
+
+      <hr style="border:0;border-top:1px solid #eee;margin:14px 0;" />
+
+      <div class="row" style="align-items:center;">
+        <a class="btn" id="recordBtn" href="#" rel="noopener">현장기록 입력</a>
+        <a class="btn secondary" href="/qr/DT0368.png" download>QR PNG</a>
+      </div>
+      <p class="muted" style="margin-top:10px;">
+        ※ 버튼을 누르면 Google Form이 열리고, 공원명/수목코드가 자동 입력됩니다.
+      </p>
+
+      <div style="margin-top:14px;">
+        <div class="k" style="margin-bottom:6px;">필요 관리 내용</div>
+        <div class="v" style="white-space:pre-wrap;"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Google Form Prefill
+    const FORM_BASE_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdgujOIV9bKAUyOAot7AoysT4UWBrrIKkQbIgWirDtZjaapQA/viewform?usp=pp_url";
+    const ENTRY_PARK_NAME = "entry.939121262";
+    const ENTRY_TREE_CODE = "entry.253024248";
+    const ENTRY_SURVEYOR = "entry.2066724387";
+    const ENTRY_SURVEY_DATE = "entry.2016295766";
+
+    const parkName = "안흥유원지";
+    const treeCode = "DT0368";
+
+    function toYMD(d) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth()+1).padStart(2,'0');
+      const day = String(d.getDate()).padStart(2,'0');
+      return `${y}-${m}-${day}`;
+    }
+
+    function buildFormUrl() {
+      const url = new URL(FORM_BASE_URL);
+      url.searchParams.set(ENTRY_PARK_NAME, parkName);
+      url.searchParams.set(ENTRY_TREE_CODE, treeCode);
+      // surveyor/date는 사용자가 폼에서 입력해도 되지만, 날짜는 기본값으로 넣어둠
+      url.searchParams.set(ENTRY_SURVEY_DATE, toYMD(new Date()));
+      return url.toString();
+    }
+
+    document.getElementById("recordBtn").href = buildFormUrl();
+  </script>
+</body>
+</html>
