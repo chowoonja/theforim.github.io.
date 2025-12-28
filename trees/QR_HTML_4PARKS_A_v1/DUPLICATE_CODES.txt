@@ -1,4 +1,0 @@
-중복 수목코드(첫 번째 항목만 생성, 나머지는 건너뜀)
-- seohee: SH-DTOT027
-- seohee: SH-DTMG001
-- jinam: JA-ETJY005
